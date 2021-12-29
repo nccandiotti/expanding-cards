@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Muli", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  /* this turns it into a flex row, so now container is a flex box and any immediate children (divs) will be put horizontally into a row. If did flex direction column, it would be in a row */
+  width: 90vw;
+
+  /* taking up 90 of 100 viewport width */
+}
+
+.panel {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 80vh;
+  /* 80 viewport heights */
+  border-radius: 50px;
+  /* makes borders rounded */
+  color: white;
+  cursor: pointer;
+  /* there will now be a cursor when you hover over it */
+  flex: 0.5;
+  /* all will be even, when have active class will change flex to higher*/
+  margin: 10px;
+  /* margin to spread them out */
+  position: relative;
+  /* relative to position h3s inside to an absolute positiion */
+  transition: flex 0.7s ease-in;
+  filter: blur(1px);
+}
+
+.panel h3 {
+  font-size: 24px;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  margin: 0;
+  opacity: 0;
+  /* making opacity zero so that the heading only shows when the panel is active*/
+  /* bottom and left will make the h3s in the bottom left corner */
+}
+
+.panel.active {
+  flex: 5;
+  filter: none;
+}
+
+.panel.active h3 {
+  opacity: 1;
+  transition: opacity 0.3s ease-in 0.4s;
+  /* now can see h3 if panel is active */
+}
+
+/* media selector makes it so that if the screen is smaller (less than 480) only the first 3 panels show, : is a pseudo selector - Pseudo-classes let you apply a style to an element not only in relation to the content of the document tree, but also in relation to external factors like the history of the navigator (:visited, for example), the status of its content (like :checked on certain form elements), or the position of the mouse (like :hover, which lets you know if the mouse is over an element or not).
+
+ */
+@media (max-width: 480px) {
+  .container {
+    width: 100vw;
+  }
+  .panel:nth-of-type(4),
+  .panel:nth-of-type(5) {
+    display: none;
+  }
+}
